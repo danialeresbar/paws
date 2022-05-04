@@ -1,0 +1,51 @@
+version: '3.9'
+
+x-common: &common
+  env_file:
+    - .env
+  volumes:
+    - ./apps:/src/apps
+    - ./paws:/src/paws
+    - ./htmlcov:/src/htmlcov
+    - ./scripts:/src/scripts
+
+services:
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    container_name: paws-nginx
+    volumes:
+      - static:/src/paws/static
+    depends_on:
+      - web
+    ports:
+      - "80:8000"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    <<: *common
+    depends_on:
+      - database
+    command: ["./scripts/wait-for-it.sh", "database:5432", "--", "./scripts/dev-entrypoint.sh"]
+    expose:
+      - "8000"
+
+  database:
+    image: postgis/postgis:13-3.0-alpine
+    container_name: paws-postgis
+    restart: "no"
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-postgres}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-postgres}
+      POSTGRES_DB: ${DATABASE_NAME:-postgres}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    # For development management please use the following port: 50000
+    ports:
+      - "50000:5432"
+
+volumes:
+  pg_data:

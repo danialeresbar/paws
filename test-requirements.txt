@@ -1,0 +1,13 @@
+# Last update: Add Faker package
+
+# Code coverage testing for Python
+coverage==6.3.2
+
+# Fixtures replacement based on thoughtbot’s factory_bot
+factory-boy==3.2.1
+
+# Python package that generates fake data for you
+Faker==13.7.0
+
+# Used for get traceback when using parallel tests
+tblib==1.7.0

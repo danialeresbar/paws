@@ -1,0 +1,12 @@
+version: '3.9'
+
+# BASE CONFIG: applies to all environments. It does not work alone
+
+services:
+  web:
+    container_name: paws-application
+    volumes:
+      - static:/src/paws/static
+
+volumes:
+  static:
