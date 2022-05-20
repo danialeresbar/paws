@@ -7,4 +7,4 @@ class ErrorModelForm(forms.ModelForm):
 
     class Meta:
         model = Error
-        fields = '__all__'
+        fields = ('code', 'message', 'data',)

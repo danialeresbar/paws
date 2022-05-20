@@ -42,4 +42,4 @@ class PAWSAdminSite( admin.AdminSite ):
 admin_site = PAWSAdminSite(name='paws-admin')
 admin_site.site_title = 'PAWS Application'
 admin_site.site_header = 'PAWS Application'
-admin_site.site_url = 'https://alfred.com.co'
+admin_site.site_url = 'https://www.unillanos.edu.co'

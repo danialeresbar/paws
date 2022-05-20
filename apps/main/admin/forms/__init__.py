@@ -1,1 +1,2 @@
+from .db_configuration_form import DbConfigurationModelForm
 from .error_form import ErrorModelForm

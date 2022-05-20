@@ -22,22 +22,17 @@ class IdentityMixin(models.Model):
         default   = uuid.uuid4,
         editable  = False
     )
- 
-    def get_id(self):
+
+    @property
+    def id(self):
         return self._id
 
-    def get_uuid(self):
+    @property
+    def uuid(self):
         return self._uuid
-
-    id   = property(get_id, None)
-    uuid = property(get_uuid, None)
 
     class Meta:
         abstract = True
 
     def __str__(self):
         return f'<{self.__class__.__name__} {self._uuid}>'
-
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        super(IdentityMixin, self).save(*args, **kwargs)

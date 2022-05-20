@@ -10,18 +10,6 @@ x-common: &common
     - ./scripts:/src/scripts
 
 services:
-  nginx:
-    build:
-      context: nginx
-      dockerfile: Dockerfile
-    container_name: paws-nginx
-    volumes:
-      - static:/src/paws/static
-    depends_on:
-      - web
-    ports:
-      - "80:8000"
-
   web:
     build:
       context: .
@@ -30,8 +18,8 @@ services:
     depends_on:
       - database
     command: ["./scripts/wait-for-it.sh", "database:5432", "--", "./scripts/dev-entrypoint.sh"]
-    expose:
-      - "8000"
+    ports:
+      - "8010:8080"
 
   database:
     image: postgis/postgis:13-3.0-alpine

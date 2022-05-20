@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    container_name: paws-nginx
+    volumes:
+      - static:/src/paws/static
+    depends_on:
+      - web
+    ports:
+      - "80:8000"
