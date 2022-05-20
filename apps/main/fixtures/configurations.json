@@ -1,0 +1,13 @@
+[
+{
+  "model": "main.dbconfiguration",
+  "pk": 1,
+  "fields": {
+    "_created_at": "2020-05-20T02:03:28.958Z",
+    "_updated_at": "2020-05-20T02:03:28.958Z",
+    "_uuid": "711d8388-9622-407b-94d4-71e6a27a69db",
+    "maintenance_mode": false,
+    "restrict_frequency_to_TV": true
+  }
+}
+]
